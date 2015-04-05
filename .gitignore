@@ -4,3 +4,5 @@
 .settings/
 infographyl.iml
 target/
+src/main/css/
+src/main/js/

@@ -8,23 +8,23 @@
         <title>Infographyl - HelloWorld</title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
         <!-- Latest compiled JavaScript -->
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <link href="css/metro/blue/jtable.css" rel="stylesheet" type="text/css" />
+        <link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+        <!-- jTable script file. -->
+        <script src="js/jquery-1.11.2.js" type="text/javascript"></script>
+        <script src="js/jquery-ui.js" type="text/javascript"></script>
+        <script src="js/jtable/jquery.jtable.js" type="text/javascript"></script>
+        <script src="js/infographicJTable.js" type="text/javascript"></script>
     </head>
     <body>
         <div class="container">
-            <h1>infographyl</h1>
-            <h3>There are ${size} infographics in the db</h3>
-            <p>Welcome to the infographyl... we have infographics</p>
-            <div class="row">
-                <div class="col-md-12">
-                    <img src="http://www.dailyinfographic.com/wp-content/uploads/2015/03/Small-Biz-Survey-V2-700x2291.png" />
-                </div>
-            </div>
+            <h1>infographyl <small>... we have infographics</small></h1>
+            <div id="InfographicTableContainer"></div>
         </div>
 
     </body>

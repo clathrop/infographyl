@@ -4,29 +4,38 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:p="http://www.springframework.org/schema/p"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-  http://www.springframework.org/schema/context
-  http://www.springframework.org/schema/context/spring-context-3.0.xsd
-  http://www.springframework.org/schema/tx
-  http://www.springframework.org/schema/tx/spring-tx.xsd">
+       xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                http://www.springframework.org/schema/tx
+                http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <tx:annotation-driven />
 
-    <context:component-scan base-package="com.clathrop.infographyl.dao" />
-
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-          destroy-method="close">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/infographyl_db" />
-        <property name="username" value="clathrop" />
-        <property name="password" value="two6teen" />
-    </bean>
+    <context:component-scan base-package="com.clathrop.infographyl.*" />
 
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="infographylPU" />
         <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <!-- Connection properties -->
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/infographyl_db" />
+        <property name="user" value="clathrop" />
+        <property name="password" value="two6teen" />
+        <!-- Pool properties -->
+        <!--<property name="maxIdleTime" value="2" />-->
+        <property name="minPoolSize" value="5" />
+        <property name="maxPoolSize" value="20" />
+        <property name="acquireIncrement" value="1" />
+        <property name="maxStatements" value="0" />
+        <property name="idleConnectionTestPeriod" value="3000" />
+        <property name="loginTimeout" value="300" />
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">

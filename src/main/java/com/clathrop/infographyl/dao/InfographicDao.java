@@ -8,4 +8,8 @@ public interface InfographicDao{
 
     void insertInfographic(Infographic infographic);
     List<Infographic> findAllInfographics();
+    Infographic getRandomInfographic(Integer tableSize);
+    Integer getRowCount();
+    List<Infographic> listInfographics(Integer startIndex, Integer pageSize);
+
 }

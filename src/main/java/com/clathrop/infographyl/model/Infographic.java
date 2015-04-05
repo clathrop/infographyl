@@ -14,9 +14,10 @@ public class Infographic {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private int id;
-
     @Column
     private String name;
+    @Column
+    private String description;
     @Column
     private String url;
     @Column
@@ -50,6 +51,14 @@ public class Infographic {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getUrl() {

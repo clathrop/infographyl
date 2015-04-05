@@ -1,6 +1,7 @@
 package com.clathrop.infographyl.controller;
 
 
+import com.clathrop.infographyl.dao.InfographicDao;
 import com.clathrop.infographyl.dao.InfographicManager;
 import com.clathrop.infographyl.dao.InfographicManagerImpl;
 import com.clathrop.infographyl.model.Infographic;
@@ -19,23 +20,26 @@ import java.util.List;
 @Controller
 public class InfographicController {
 
-    @RequestMapping("/hello")
+    @RequestMapping("/")
     public String hello(@RequestParam(value="name", required = false, defaultValue = "World") String name, Model model){
 
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 
         InfographicManager igManager = (InfographicManager) ctx.getBean("infographicManagerImpl");
 
-        
-        List<Infographic> list = igManager.findAllInfographics();
+        int size = igManager.findAllInfographics().size();
+        Infographic ig = igManager.getRandomInfographic();
 
-        int size = list.size();
+        name = ig.getName();
+        String url = ig.getUrl();
+        String category = ig.getCategory();
 
         model.addAttribute("size", size);
-
+        model.addAttribute("url", url);
+        model.addAttribute("category", category);
         model.addAttribute("name", name);
         //returns the view name
-        return "helloworld";
+        return "home";
     }
 
 
