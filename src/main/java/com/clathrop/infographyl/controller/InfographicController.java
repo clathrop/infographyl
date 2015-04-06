@@ -38,6 +38,8 @@ public class InfographicController {
         model.addAttribute("url", url);
         model.addAttribute("category", category);
         model.addAttribute("name", name);
+        model.addAttribute("description", ig.getDescription());
+        model.addAttribute("tags", ig.getTags());
         //returns the view name
         return "home";
     }

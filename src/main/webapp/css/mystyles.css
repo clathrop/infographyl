@@ -1,0 +1,32 @@
+
+.mycontainer{
+background-color: #E8E8E8;
+margin: 0px auto;
+padding-right:24px;
+padding-left:24px;
+}
+
+.topp {
+font-size: 150%;
+margin-top: 0em;
+margin-bottom: .1em;
+}
+
+.bottomp{
+font-size: 150%;
+margin-top: 0em;
+margin-bottom: 2em;
+}
+
+
+.title {
+  margin-bottom: .1em;
+  font-size: 70px;
+  margin-top: 40px;
+}
+
+.subtitle {
+  margin-top: 0px;
+  margin-bottom: 40px;
+}
+

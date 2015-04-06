@@ -9,22 +9,49 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
+        <link href="css/mystyles.css" rel="stylesheet" type="text/css" />
+
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
         <!-- Latest compiled JavaScript -->
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
     </head>
     <body>
-        <div class="container">
-            <h1>infographyl <small>... we have infographics</small></h1>
-            <h3>There are ${size} infographics in the db</h3>
-            <h3>This random infographic is called ${name}</h3>
-            <div class="row">
-                <div class="col-md-12">
-                    <img src=${url} />
-                </div>
+        <nav class="navbar navbar-inverse">
+          <div class="container">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">infographyl</a>
             </div>
+            <div>
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <div class="container mycontainer">
+            <!-- <div class="jumbotron"> -->
+                <h1 class="title">infographyl</h1>
+                <h2 class="subtitle">feed the mind</h2>
+                <div class="row">
+                    <div class="col-md-8">
+                        <img src=${url} class="img-rounded" alt=${name} width="750">
+                    </div>
+                        <div class="col-md-4">
+                            <br><br>
+                            <p class="text-muted topp"><small>Description: </small></p>
+                            <p class="bottomp">${description}</p>
+                            <p class="text-muted topp"><small>Category: </small></p>
+                            <p class="bottomp">${category}</p>
+                            <p class="text-muted topp"><small>Tags: </small></p>
+                            <p class="bottomp">${tags}</p>
+                        </div>
+                    </div>
+            <!-- </div> -->
+
         </div>
 
     </body>

@@ -77,18 +77,7 @@ public class InfographicManagerImpl implements InfographicManager{
     public void updateInfographic(JsonJTableInfographicBean infographicBean){
         System.out.println("[InfographicManagerImpl]updateInfographic " + infographicBean.toString());
 
-//        Infographic infographic = new Infographic();
-//        infographic.setName(infographicBean.getName());
-//        infographic.setId(infographicBean.getId());
-//        infographic.setDescription(infographicBean.getDescription());
-//        infographic.setUrl(infographicBean.getUrl());
-//        infographic.setCategory(infographicBean.getCategory());
-//        infographic.setTags(infographicBean.getTags());
-
-
         infographicDao.updateInfographic(infographicBean);
-
-
     }
 
 }

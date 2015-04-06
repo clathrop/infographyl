@@ -23,6 +23,7 @@ public class InfographicDaoImpl implements InfographicDao{
     @PersistenceContext
     private EntityManager entityManager;
 
+
     @Override
     @Transactional
     public void insertInfographic(Infographic infographic){
