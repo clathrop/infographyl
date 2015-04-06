@@ -22,10 +22,8 @@ public class Infographic {
     private String url;
     @Column
     private String category;
-
     @Column
-    @ElementCollection(targetClass = String.class)
-    private Set<String> tags;
+    private String tags;
 
     public Infographic(){
 
@@ -44,6 +42,9 @@ public class Infographic {
         return id;
     }
 
+    public void setId(int id){
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -77,11 +78,17 @@ public class Infographic {
         this.category = category;
     }
 
-    public Set<String> getTags() {
+    public String getTags() {
         return tags;
     }
 
-    public void setTags(Set<String> tags) {
+    public void setTags(String tags) {
         this.tags = tags;
     }
+
+    @Override
+    public String toString(){
+        return "{id: " + id + ", name: " + name + ", " + url + "}";
+    }
+
 }

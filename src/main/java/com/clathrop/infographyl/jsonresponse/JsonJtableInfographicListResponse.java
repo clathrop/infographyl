@@ -1,5 +1,6 @@
-package com.clathrop.infographyl.model;
+package com.clathrop.infographyl.jsonresponse;
 
+import com.clathrop.infographyl.model.JsonJTableInfographicBean;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class JsonJtableInfographicListResponse {
         this.Message = Message;
     }
 
-    @JsonProperty
+    @JsonProperty("Result")
     public String getResult(){
         return this.Result;
     }

@@ -5,15 +5,15 @@
 $(document).ready(function() {
     //setup the jtable that will display the results
     $('#InfographicTableContainer').jtable({
-        title: 'Table of Expenses',
-        selecting: true, //Enable selecting
+        title: 'Infographic Table',
+        selecting: false, //Enable selecting
         paging: true, //Enable paging
         pageSize: 10, //Set page size (default: 10)
-        sorting: true, //Enable sorting
+        sorting: false, //Enable sorting
         actions: {
-            listAction: 'infographicTable/listInfographics'
-            //createAction: 'infographicTable/addExpense',
-           // updateAction: 'infographicTable/updateExpense',
+            listAction: 'infographicTable/listInfographics',
+            createAction: 'infographicTable/createInfographic',
+            updateAction: 'infographicTable/updateInfographic'
             //deleteAction: 'infographicTable/deleteExpense'
         },
         fields: {
@@ -38,8 +38,7 @@ $(document).ready(function() {
             },
             category: {
                 title: 'Category',
-                width : '20%',
-                edit  : false
+                width : '20%'
             },
             tags: {
                 title: 'Tags',

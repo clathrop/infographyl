@@ -67,7 +67,7 @@ public class JsonJTableInfographicBean {
 
     @Override
     public String toString(){
-        return "{id: " + id + ", name: " + name + ", " + url + "}";
+        return "{id: " + id + ", name: " + name + ", description: " + description + ", url: " + url + "}";
     }
 
 

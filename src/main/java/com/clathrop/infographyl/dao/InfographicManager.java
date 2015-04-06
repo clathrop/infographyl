@@ -10,10 +10,11 @@ import java.util.List;
  */
 public interface InfographicManager {
 
-    void insertInfographic(Infographic infographic);
+    void insertInfographic(JsonJTableInfographicBean infographicBean);
     List<Infographic> findAllInfographics();
     Infographic getRandomInfographic();
     Integer getRowCount();
     List<JsonJTableInfographicBean> listInfographics(Integer startIndex, Integer pageSize);
+    void updateInfographic(JsonJTableInfographicBean infographicBean);
 
 }

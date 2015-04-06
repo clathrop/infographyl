@@ -1,6 +1,7 @@
 package com.clathrop.infographyl.dao;
 
 import com.clathrop.infographyl.model.Infographic;
+import com.clathrop.infographyl.model.JsonJTableInfographicBean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.sound.midi.MidiDevice;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -91,20 +93,43 @@ public class InfographicDaoImpl implements InfographicDao{
 
     @Override
     public List<Infographic> listInfographics(Integer startIndex, Integer pageSize){
-        List<Infographic> igList = new ArrayList<Infographic>();
+        List<Infographic> igList;
 
         String sStartIndex = Integer.toString(startIndex);
         String sPageSize = Integer.toString(pageSize);
 
         try{
-            List list = entityManager.createNativeQuery("Select * from infographics limit " + sStartIndex + ", " + sPageSize).getResultList();
-            for(Object ig : list){
-                igList.add((Infographic) ig);
-            }
+            CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+            CriteriaQuery<Infographic> cq = builder.createQuery(Infographic.class);
+
+            Root<Infographic> root = cq.from(Infographic.class);
+            cq.select(root);
+            igList = entityManager.createQuery(cq).setFirstResult(startIndex).setMaxResults(pageSize).getResultList();
+            System.out.println("\n\nAbout to return from listInfographics\n\n");
             return igList;
         } catch(Exception e){
             e.printStackTrace();
             return null;
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    @Override
+    @Transactional
+    public void updateInfographic(JsonJTableInfographicBean infographicBean){
+        try{
+            //System.out.println("\n\nupdateInfographic: " + infographic.toString());
+            Infographic ig = entityManager.find(Infographic.class, Integer.parseInt(infographicBean.getId()));
+
+            ig.setName(infographicBean.getName());
+            ig.setUrl(infographicBean.getUrl());
+            ig.setDescription(infographicBean.getDescription());
+            ig.setCategory(infographicBean.getCategory());
+            ig.setTags(infographicBean.getTags());
+            entityManager.merge(ig);
+        } catch (Exception e){
+            e.printStackTrace();
         } finally {
             entityManager.close();
         }

@@ -1,18 +1,15 @@
 package com.clathrop.infographyl.controller;
 
 import com.clathrop.infographyl.dao.InfographicManager;
-import com.clathrop.infographyl.dao.InfographicManagerImpl;
+import com.clathrop.infographyl.jsonresponse.JsonJtableInfographicResponse;
 import com.clathrop.infographyl.model.JsonJTableInfographicBean;
-import com.clathrop.infographyl.model.JsonJtableInfographicListResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.clathrop.infographyl.jsonresponse.JsonJtableInfographicListResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,12 +23,12 @@ public class JTableController {
 //    InfographicManager infographicManager;
 
 
-    @RequestMapping(value="/infographicTable", method = RequestMethod.GET)
-    public String show(ModelMap model){
+    @RequestMapping(value = "/infographicTable", method = RequestMethod.GET)
+    public String show(ModelMap model) {
         return "infographicTable";
     }
 
-    @RequestMapping(value="/infographicTable/listInfographics")
+    @RequestMapping(value = "/infographicTable/listInfographics")
     @ResponseBody
     public JsonJtableInfographicListResponse listInfographics(@RequestParam Integer jtStartIndex, @RequestParam Integer jtPageSize) {
 
@@ -41,14 +38,62 @@ public class JTableController {
 
         JsonJtableInfographicListResponse jilr;
         List<JsonJTableInfographicBean> igList;
-        try{
+        try {
             int igCount = igManager.getRowCount();
+            System.out.println("\n\nTotalRecordCount: " + igCount + "\n\n");
+
             igList = igManager.listInfographics(jtStartIndex, jtPageSize);
+
+            for (JsonJTableInfographicBean ig : igList) {
+                System.out.println("\n\n" + ig.toString() + "\n\n");
+            }
             jilr = new JsonJtableInfographicListResponse("OK", igList, igCount);
-        } catch(Exception e){
+        } catch (Exception e) {
             jilr = new JsonJtableInfographicListResponse("ERROR", e.getMessage());
         }
         return jilr;
+    }
+
+    @RequestMapping(value = "/infographicTable/createInfographic", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonJtableInfographicResponse createInfographic(@ModelAttribute JsonJTableInfographicBean infographicBean, BindingResult result) {
+
+        JsonJtableInfographicResponse jsonJtableInfographicResponse;
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+        InfographicManager igManager = (InfographicManager) ctx.getBean("infographicManagerImpl");
+
+        if (result.hasErrors()) {
+            jsonJtableInfographicResponse = new JsonJtableInfographicResponse();
+        }
+        try {
+            igManager.insertInfographic(infographicBean);
+            jsonJtableInfographicResponse = new JsonJtableInfographicResponse("OK", infographicBean);
+        } catch (Exception e) {
+            jsonJtableInfographicResponse = new JsonJtableInfographicResponse("ERROR", e.getMessage());
+        }
+
+        return jsonJtableInfographicResponse;
+    }
+
+    @RequestMapping(value = "/infographicTable/updateInfographic", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonJtableInfographicResponse updateInfographic(@ModelAttribute JsonJTableInfographicBean infographicBean, BindingResult result) {
+
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+        InfographicManager igManager = (InfographicManager) ctx.getBean("infographicManagerImpl");
+
+        JsonJtableInfographicResponse jsonJtableInfographicResponse;
+        if (result.hasErrors()) {
+            jsonJtableInfographicResponse = new JsonJtableInfographicResponse("ERROR", "Form invalid");
+            return jsonJtableInfographicResponse;
+        }
+        try {
+            igManager.updateInfographic(infographicBean);
+            jsonJtableInfographicResponse = new JsonJtableInfographicResponse("OK", infographicBean);
+        } catch (Exception e) {
+            jsonJtableInfographicResponse = new JsonJtableInfographicResponse("ERROR", e.getMessage());
+        }
+        return jsonJtableInfographicResponse;
     }
 
 
