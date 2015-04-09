@@ -1,0 +1,53 @@
+Deployment instructions:
+
+1. install msyql - sudo apt-get install mysql
+2. (as root) create user for infographyl - create user 'iguser'@'localhost' identified by 'igpass';
+3. (as root) grant privileges to new user - GRANT ALL PRIVILEGES ON *.* TO 'iguser'@'localhost';
+4. (as root) create the infographyl database - create database infographyl_db;
+5. (as root) create infographics table - 
+	create table infographics(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100) NOT NULL, description VARCHAR(1000), url VARCHAR(500) NOT NULL, category VARCHAR(100), tags VARCHAR(500));
+
+6. copy mysql-connector-java-5.1.28.jar into the /usr/share/tomcat7/lib folder
+
+7. if we're still dealing with the shitty memory leak issue, add the following to /etc/my.cnf:
+	[mysqld]
+	wait_timeout = 5 
+	
+
+
+
+ 
+
+
+
+
+#### Queries ####
+Output table to file:
+	select name,description,url,category,tags from infographics into outfile '/tmp/infographyl_db_export.csv' fields terminated by '|' lines terminated by '\n';
+
+
+Insert into infographic table:
+	insert into infographics (name,url,category) values('How To Get A Better Night''s Sleep','http://i.imgur.com/CWnXAwn.jpg','health');
+
+Import CSV to mysql
+	LOAD DATA INFILE '/data/infographyl_db.csv' INTO TABLE infographics_test FIELDS TERMINATED BY ',' ENCLOSED BY '\"' (name,description,url,category,tags)
+
+
+
+
+
+
+
+
+
+
+
+name,description,url,category,tags
+
+
+'How to be a Google Power user','http://i.imgur.com/ywMBTmy.jpg','technology'
+
+'The Ultimate Slow Cooker Guide','http://i.imgur.com/lt5PU92.jpg','food'
+'Your Brain on Beer vs Coffee','http://i.imgur.com/8KyQX5u.png','food'
+
+'How To Get A Better Night''s Sleep','http://i.imgur.com/CWnXAwn.jpg','health'

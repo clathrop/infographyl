@@ -26,8 +26,8 @@
         <!-- Connection properties -->
         <property name="driverClass" value="com.mysql.jdbc.Driver" />
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/infographyl_db" />
-        <property name="user" value="clathrop" />
-        <property name="password" value="two6teen" />
+        <property name="user" value="iguser" />
+        <property name="password" value="igpass" />
         <!-- Pool properties -->
         <!--<property name="maxIdleTime" value="2" />-->
         <property name="minPoolSize" value="5" />
