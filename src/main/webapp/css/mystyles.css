@@ -30,3 +30,11 @@ margin-bottom: 2em;
   margin-bottom: 40px;
 }
 
+.image{
+    position:relative;
+    overflow:hidden;
+    padding-bottom:100%;
+}
+.image img{
+    position:absolute;
+}

@@ -77,4 +77,9 @@ public class InfographicManagerImpl implements InfographicManager{
         infographicDao.updateInfographic(infographicBean);
     }
 
+    @Override
+    public List<Infographic> findInfographicsForCategory(String category){
+        return infographicDao.findInfographicsForCategory(category);
+    }
+
 }

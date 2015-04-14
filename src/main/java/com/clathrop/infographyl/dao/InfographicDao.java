@@ -14,5 +14,6 @@ public interface InfographicDao{
     List<Infographic> listInfographics(Integer startIndex, Integer pageSize);
     //void updateInfographic(Infographic infographic);
     void updateInfographic(JsonJTableInfographicBean infographic);
+    List<Infographic> findInfographicsForCategory(String category);
 
 }

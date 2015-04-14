@@ -20,20 +20,24 @@
     </head>
     <body>
         <nav class="navbar navbar-inverse">
-          <div class="container">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="#">infographyl</a>
-            </div>
-            <div>
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-              </ul>
-            </div>
-          </div>
+                  <div class="container">
+                    <div class="navbar-header">
+                      <a class="navbar-brand" href="/">infographyl</a>
+                    </div>
+                    <div>
+                      <ul class="nav navbar-nav">
+                        <li class="active"><a href="/">home</a></li>
+                      </ul>
+                    </div>
+                    <div>
+                      <ul class="nav navbar-nav">
+                        <li class="active"><a href="/category/technology">technology</a></li>
+                      </ul>
+                    </div>
+                  </div>
         </nav>
 
         <div class="container mycontainer">
-            <!-- <div class="jumbotron"> -->
                 <h1 class="title">infographyl</h1>
                 <h2 class="subtitle">feed the mind</h2>
                 <div class="row">
@@ -48,10 +52,9 @@
                             <p class="bottomp">${category}</p>
                             <p class="text-muted topp"><small>Tags: </small></p>
                             <p class="bottomp">${tags}</p>
+                            <a href="/" class="btn btn-info" role="button">New Infographic</a>
                         </div>
                     </div>
-            <!-- </div> -->
-
         </div>
 
     </body>

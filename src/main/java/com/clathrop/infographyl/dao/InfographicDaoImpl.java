@@ -18,7 +18,7 @@ import java.util.Random;
  * Created by clathrop on 4/2/15.
  */
 @Repository
-public class InfographicDaoImpl implements InfographicDao{
+public class InfographicDaoImpl implements InfographicDao {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -26,10 +26,10 @@ public class InfographicDaoImpl implements InfographicDao{
 
     @Override
     @Transactional
-    public void insertInfographic(Infographic infographic){
-        try{
+    public void insertInfographic(Infographic infographic) {
+        try {
             entityManager.persist(infographic);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             entityManager.close();
@@ -38,13 +38,13 @@ public class InfographicDaoImpl implements InfographicDao{
     }
 
     @Override
-    public List<Infographic> findAllInfographics(){
-        try{
+    public List<Infographic> findAllInfographics() {
+        try {
             Query query = entityManager.createQuery("from Infographic");
 
             List<Infographic> igList = query.getResultList();
             return igList;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         } finally {
@@ -53,11 +53,11 @@ public class InfographicDaoImpl implements InfographicDao{
     }
 
     @Override
-    public Infographic getRandomInfographic(Integer tableSize){
+    public Infographic getRandomInfographic(Integer tableSize) {
         Random rand = new Random();
-        int randomIndex = rand.nextInt((tableSize-1)+1) + 1;
+        int randomIndex = rand.nextInt((tableSize - 1) + 1) + 1;
 
-        try{
+        try {
             CriteriaBuilder builder = entityManager.getCriteriaBuilder();
             CriteriaQuery<Infographic> cq = builder.createQuery(Infographic.class);
 
@@ -66,7 +66,7 @@ public class InfographicDaoImpl implements InfographicDao{
             cq.where(builder.equal(root.<Integer>get("id"), randomIndex));
             Infographic randomIg = entityManager.createQuery(cq).getSingleResult();
             return randomIg;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         } finally {
@@ -77,11 +77,11 @@ public class InfographicDaoImpl implements InfographicDao{
     }
 
     @Override
-    public Integer getRowCount(){
-        try{
+    public Integer getRowCount() {
+        try {
             Number result = (Number) entityManager.createNativeQuery("Select count(id) from infographics").getSingleResult();
             return result.intValue();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         } finally {
@@ -90,13 +90,13 @@ public class InfographicDaoImpl implements InfographicDao{
     }
 
     @Override
-    public List<Infographic> listInfographics(Integer startIndex, Integer pageSize){
+    public List<Infographic> listInfographics(Integer startIndex, Integer pageSize) {
         List<Infographic> igList;
 
         String sStartIndex = Integer.toString(startIndex);
         String sPageSize = Integer.toString(pageSize);
 
-        try{
+        try {
             CriteriaBuilder builder = entityManager.getCriteriaBuilder();
             CriteriaQuery<Infographic> cq = builder.createQuery(Infographic.class);
 
@@ -104,7 +104,7 @@ public class InfographicDaoImpl implements InfographicDao{
             cq.select(root);
             igList = entityManager.createQuery(cq).setFirstResult(startIndex).setMaxResults(pageSize).getResultList();
             return igList;
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         } finally {
@@ -114,8 +114,8 @@ public class InfographicDaoImpl implements InfographicDao{
 
     @Override
     @Transactional
-    public void updateInfographic(JsonJTableInfographicBean infographicBean){
-        try{
+    public void updateInfographic(JsonJTableInfographicBean infographicBean) {
+        try {
             Infographic ig = entityManager.find(Infographic.class, Integer.parseInt(infographicBean.getId()));
 
             ig.setName(infographicBean.getName());
@@ -124,12 +124,33 @@ public class InfographicDaoImpl implements InfographicDao{
             ig.setCategory(infographicBean.getCategory());
             ig.setTags(infographicBean.getTags());
             entityManager.merge(ig);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             entityManager.close();
         }
+    }
 
+    @Override
+    public List<Infographic> findInfographicsForCategory(String category) {
+        List<Infographic> igList;
+
+        try {
+            CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+            CriteriaQuery<Infographic> cq = builder.createQuery(Infographic.class);
+
+            Root<Infographic> root = cq.from(Infographic.class);
+            cq.select(root);
+            cq.where(builder.like(root.<String>get("category"), category));
+            igList = entityManager.createQuery(cq).getResultList();
+
+            return igList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            entityManager.close();
+        }
 
     }
 

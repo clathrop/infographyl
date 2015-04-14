@@ -5,6 +5,7 @@ import com.clathrop.infographyl.dao.InfographicDao;
 import com.clathrop.infographyl.dao.InfographicManager;
 import com.clathrop.infographyl.dao.InfographicManagerImpl;
 import com.clathrop.infographyl.model.Infographic;
+import org.hibernate.dialect.InformixDialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -27,9 +28,7 @@ public class InfographicController {
 
     @RequestMapping("/")
     public String home(Model model){
-
         try{
-
             int size = infographicManager.findAllInfographics().size();
             Infographic ig = infographicManager.getRandomInfographic();
 
@@ -50,7 +49,16 @@ public class InfographicController {
             e.printStackTrace();
         }
         return "home";
+    }
 
+    @RequestMapping("/category/technology")
+    public String category(@RequestParam(value = "category", required = false, defaultValue = "technology") String category, Model model){
+        List<Infographic> igList = infographicManager.findInfographicsForCategory(category);
+
+        model.addAttribute("igList", igList);
+
+
+        return "category";
     }
 
 
