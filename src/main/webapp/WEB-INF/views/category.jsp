@@ -31,7 +31,7 @@
             </div>
             <div>
               <ul class="nav navbar-nav">
-                <li class="active"><a href="/category/technology">technology</a></li>
+                <li class="active"><a href="category/technology">technology</a></li>
               </ul>
             </div>
           </div>
