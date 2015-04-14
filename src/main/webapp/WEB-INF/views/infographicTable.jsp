@@ -22,8 +22,26 @@
         <script src="js/infographicJTable.js" type="text/javascript"></script>
     </head>
     <body>
+    <nav class="navbar navbar-inverse">
+                      <div class="container">
+                        <div class="navbar-header">
+                          <a class="navbar-brand" href="/">infographyl</a>
+                        </div>
+                        <div>
+                          <ul class="nav navbar-nav">
+                            <li class="active"><a href="/">home</a></li>
+                          </ul>
+                        </div>
+                        <div>
+                          <ul class="nav navbar-nav">
+                            <li class="active"><a href="category/technology">technology</a></li>
+                          </ul>
+                        </div>
+                      </div>
+            </nav>
+
         <div class="container">
-            <h1>infographyl <small>... we have infographics</small></h1>
+            <h1>infographyl </h1>
             <div id="InfographicTableContainer"></div>
         </div>
 
