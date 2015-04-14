@@ -71,6 +71,11 @@
             <artifactId>hibernate-c3p0</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-ehcache</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
 
         <!-- JSON dependencies -->
         <dependency>
@@ -80,11 +85,11 @@
         </dependency>
 
         <!-- C3P0 dependencies -->
-        <!--<dependency>-->
-            <!--<groupId>c3p0</groupId>-->
-            <!--<artifactId>c3p0</artifactId>-->
-            <!--<version>0.9.1.2</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.1.2</version>
+        </dependency>
 
         <!-- Commons dependencies -->
         <dependency>
@@ -92,7 +97,16 @@
             <artifactId>commons-dbcp</artifactId>
             <version>1.2.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
     </dependencies>
+
+
+
 
 
     <build>

@@ -40,12 +40,9 @@ public class InfographicDaoImpl implements InfographicDao{
     @Override
     public List<Infographic> findAllInfographics(){
         try{
-            CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Infographic> cq = builder.createQuery(Infographic.class);
+            Query query = entityManager.createQuery("from Infographic");
 
-            Root<Infographic> root = cq.from(Infographic.class);
-            cq.select(root);
-            List<Infographic> igList = entityManager.createQuery(cq).getResultList();
+            List<Infographic> igList = query.getResultList();
             return igList;
         } catch (Exception e){
             e.printStackTrace();
@@ -106,7 +103,6 @@ public class InfographicDaoImpl implements InfographicDao{
             Root<Infographic> root = cq.from(Infographic.class);
             cq.select(root);
             igList = entityManager.createQuery(cq).setFirstResult(startIndex).setMaxResults(pageSize).getResultList();
-            System.out.println("\n\nAbout to return from listInfographics\n\n");
             return igList;
         } catch(Exception e){
             e.printStackTrace();
@@ -120,7 +116,6 @@ public class InfographicDaoImpl implements InfographicDao{
     @Transactional
     public void updateInfographic(JsonJTableInfographicBean infographicBean){
         try{
-            //System.out.println("\n\nupdateInfographic: " + infographic.toString());
             Infographic ig = entityManager.find(Infographic.class, Integer.parseInt(infographicBean.getId()));
 
             ig.setName(infographicBean.getName());

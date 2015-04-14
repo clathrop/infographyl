@@ -53,7 +53,6 @@ public class InfographicManagerImpl implements InfographicManager{
         List<Infographic> igList = null;
         try{
             igList = infographicDao.listInfographics(startIndex, pageSize);
-            System.out.println("\n\nSuccessfully returned from listInfographics\n\n");
             for(Infographic ig : igList){
                 JsonJTableInfographicBean jsonIg = new JsonJTableInfographicBean();
                 jsonIg.setId(Integer.toString(ig.getId()));
@@ -75,8 +74,6 @@ public class InfographicManagerImpl implements InfographicManager{
     @Override
     @Transactional
     public void updateInfographic(JsonJTableInfographicBean infographicBean){
-        System.out.println("[InfographicManagerImpl]updateInfographic " + infographicBean.toString());
-
         infographicDao.updateInfographic(infographicBean);
     }
 

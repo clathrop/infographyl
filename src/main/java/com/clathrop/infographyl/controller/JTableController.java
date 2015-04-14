@@ -4,6 +4,7 @@ import com.clathrop.infographyl.dao.InfographicManager;
 import com.clathrop.infographyl.jsonresponse.JsonJtableInfographicResponse;
 import com.clathrop.infographyl.model.JsonJTableInfographicBean;
 import com.clathrop.infographyl.jsonresponse.JsonJtableInfographicListResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -19,8 +20,8 @@ import java.util.List;
 @Controller
 public class JTableController {
 
-//    @Autowired
-//    InfographicManager infographicManager;
+    @Autowired
+    InfographicManager infographicManager;
 
 
     @RequestMapping(value = "/infographicTable", method = RequestMethod.GET)
@@ -32,17 +33,13 @@ public class JTableController {
     @ResponseBody
     public JsonJtableInfographicListResponse listInfographics(@RequestParam Integer jtStartIndex, @RequestParam Integer jtPageSize) {
 
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-
-        InfographicManager igManager = (InfographicManager) ctx.getBean("infographicManagerImpl");
-
         JsonJtableInfographicListResponse jilr;
         List<JsonJTableInfographicBean> igList;
         try {
-            int igCount = igManager.getRowCount();
+            int igCount = infographicManager.getRowCount();
             System.out.println("\n\nTotalRecordCount: " + igCount + "\n\n");
 
-            igList = igManager.listInfographics(jtStartIndex, jtPageSize);
+            igList = infographicManager.listInfographics(jtStartIndex, jtPageSize);
 
             for (JsonJTableInfographicBean ig : igList) {
                 System.out.println("\n\n" + ig.toString() + "\n\n");
@@ -59,14 +56,12 @@ public class JTableController {
     public JsonJtableInfographicResponse createInfographic(@ModelAttribute JsonJTableInfographicBean infographicBean, BindingResult result) {
 
         JsonJtableInfographicResponse jsonJtableInfographicResponse;
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-        InfographicManager igManager = (InfographicManager) ctx.getBean("infographicManagerImpl");
 
         if (result.hasErrors()) {
             jsonJtableInfographicResponse = new JsonJtableInfographicResponse();
         }
         try {
-            igManager.insertInfographic(infographicBean);
+            infographicManager.insertInfographic(infographicBean);
             jsonJtableInfographicResponse = new JsonJtableInfographicResponse("OK", infographicBean);
         } catch (Exception e) {
             jsonJtableInfographicResponse = new JsonJtableInfographicResponse("ERROR", e.getMessage());
@@ -79,16 +74,13 @@ public class JTableController {
     @ResponseBody
     public JsonJtableInfographicResponse updateInfographic(@ModelAttribute JsonJTableInfographicBean infographicBean, BindingResult result) {
 
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-        InfographicManager igManager = (InfographicManager) ctx.getBean("infographicManagerImpl");
-
         JsonJtableInfographicResponse jsonJtableInfographicResponse;
         if (result.hasErrors()) {
             jsonJtableInfographicResponse = new JsonJtableInfographicResponse("ERROR", "Form invalid");
             return jsonJtableInfographicResponse;
         }
         try {
-            igManager.updateInfographic(infographicBean);
+            infographicManager.updateInfographic(infographicBean);
             jsonJtableInfographicResponse = new JsonJtableInfographicResponse("OK", infographicBean);
         } catch (Exception e) {
             jsonJtableInfographicResponse = new JsonJtableInfographicResponse("ERROR", e.getMessage());
