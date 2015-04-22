@@ -7,8 +7,6 @@ import org.codehaus.jackson.annotate.JsonProperty;
  */
 public class JsonJTableInfographicBean {
 
-
-
     private String id;
     private String name;
     private String description;

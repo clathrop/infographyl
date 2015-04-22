@@ -10,7 +10,7 @@ db='infographyl_db')
 
 cursor = mydb.cursor()
 
-csv_data = csv.reader(file('infographyl_db.csv'), delimiter='|')
+csv_data = csv.reader(file('infographyl_db_export.csv'), delimiter='|')
 
 start_row = 0
 
@@ -19,7 +19,7 @@ def getSize(fileobject):
 	size = fileobject.tell()
 	return size
 
-file = open('infographyl_db.csv', 'rb')
+file = open('infographyl_db_export.csv', 'rb')
 curr_file_size = getSize(file)
 
 # Get the last file Size
@@ -40,11 +40,10 @@ if curr_file_size < saved_file_size: start_row = 0
 cur_row = 0
 for row in csv_data:
 	if cur_row >= start_row:
-		cursor.execute("INSERT INTO infographics_test (name,description,url,category,tags) VALUES (%s,%s,%s,%s,%s)", (row[0],row[1],row[2],row[3],row[4]))
+		cursor.execute("INSERT INTO infographics (name,description,url,category,tags) VALUES (%s,%s,%s,%s,%s)", (row[0],row[1],row[2],row[3],row[4]))
 		#cursor.execute("LOAD DATA INFILE '/data/infographyl_db.csv' INTO TABLE infographics_test FIELDS TERMINATED BY ',' ENCLOSED BY '\"' (name,description,url,category,tags) ")
     	# Other processing if necessary
 		cur_row += 1
-
 
 mydb.commit()
 cursor.close()

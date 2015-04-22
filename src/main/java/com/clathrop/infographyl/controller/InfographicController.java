@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -51,11 +52,14 @@ public class InfographicController {
         return "home";
     }
 
-    @RequestMapping("/category/technology")
-    public String category(@RequestParam(value = "category", required = false, defaultValue = "technology") String category, Model model){
-        List<Infographic> igList = infographicManager.findInfographicsForCategory(category);
+    @RequestMapping("/category/{categoryId}")
+//    public String category(@RequestParam(value = "category", required = false, defaultValue = "technology") String category, Model model){
+      public String category(@PathVariable("categoryId") String categoryId, Model model){
+        List<Infographic> igList = infographicManager.findInfographicsForCategory(categoryId);
 
         model.addAttribute("igList", igList);
+        model.addAttribute("listSize", igList.size());
+        model.addAttribute("categoryId", categoryId);
 
 
         return "category";

@@ -22,7 +22,7 @@
         <script src="js/infographicJTable.js" type="text/javascript"></script>
     </head>
     <body>
-    <nav class="navbar navbar-inverse">
+      <nav class="navbar navbar-inverse">
                       <div class="container">
                         <div class="navbar-header">
                           <a class="navbar-brand" href="/">infographyl</a>
@@ -38,7 +38,7 @@
                           </ul>
                         </div>
                       </div>
-            </nav>
+      </nav>
 
         <div class="container">
             <h1>infographyl </h1>
