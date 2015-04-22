@@ -12,7 +12,7 @@
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
-	<link href="/infographyl/css/mystyles.css" rel="stylesheet" type="text/css" />
+	<link href="/css/mystyles.css" rel="stylesheet" type="text/css" />
 
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -34,32 +34,32 @@
 			</div> -->
 			<div>
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="technology">technology</a></li>
+					<li class="active"><a href="/category/technology">technology</a></li>
 				</ul>
 			</div>
 			<div>
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="food">food</a></li>
+					<li class="active"><a href="/category/food">food</a></li>
 				</ul>
 			</div>
 			<div>
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="health">health</a></li>
+					<li class="active"><a href="/category/health">health</a></li>
 				</ul>
 			</div>
 			<div>
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="travel">travel</a></li>
+					<li class="active"><a href="/category/travel">travel</a></li>
 				</ul>
 			</div>
 			<div>
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="history">history</a></li>
+					<li class="active"><a href="/category/history">history</a></li>
 				</ul>
 			</div>
 			<div>
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="lifehack">lifehack</a></li>
+					<li class="active"><a href="/category/lifehack">lifehack</a></li>
 				</ul>
 			</div>
 		</div>

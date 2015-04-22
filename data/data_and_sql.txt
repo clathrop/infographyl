@@ -14,7 +14,61 @@ Deployment instructions:
 	wait_timeout = 5 
 	
 
+Putting infographyl on it's own port:
+1. Open server.xml within /var/lib/tomcat7/conf
+2. Below the existing Service for localhost, put:
 
+	<Service name="infographyl">
+
+    <Connector port="8081" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               URIEncoding="UTF-8"
+               redirectPort="8443" />
+    
+    <Engine name="Catalina" defaultHost="localhost">
+
+      <Realm className="org.apache.catalina.realm.LockOutRealm">
+        <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
+               resourceName="UserDatabase"/>
+      </Realm>
+
+      <Host name="localhost"  appBase="infographyl"
+            unpackWARs="true" autoDeploy="true">
+
+        <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
+               prefix="localhost_access_log." suffix=".txt"
+               pattern="%h %l %u %t &quot;%r&quot; %s %b" />
+
+      </Host>
+    </Engine>
+  </Service>
+
+3. This tells tomcat to listen to port 8081 for the web application within /var/lib/tomcat7/infographyl
+
+4. now go to /etc/nginx/sites-available/default and make sure this is in there:
+
+	server {
+  listen          80;
+  server_name     infographyl.com;
+  root            /var/lib/tomcat7/infographyl;
+
+  #proxy_cache one;
+
+  location / {
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Server $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://127.0.0.1:8081/;
+  }
+}
+
+which redirects the traffic from 8081 to infographyl.com
+
+5. now we need to create the root folder where the infographyl app will live seperate from tomcat7/webapps
+6. create a new folder, /var/lib/tomcat7/infographyl
+7. chown the new folder to tomcat7 via -- sudo chown -R tomcat7:tomcat7 /var/lib/tomcat7/infographyl
+8. after you package the web app, copy it to the new folder and rename the infographyl.war to ROOT.war like so -- sudo cp target/infographyl.war /var/lib/tomcat7/infographyl/ROOT.war
+9. restart tomcat and nginx
 
  
 
