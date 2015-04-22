@@ -17,4 +17,5 @@ public interface InfographicManager {
     List<JsonJTableInfographicBean> listInfographics(Integer startIndex, Integer pageSize);
     void updateInfographic(JsonJTableInfographicBean infographicBean);
     List<Infographic> findInfographicsForCategory(String category);
+    Infographic findInfographicForId(Integer id);
 }

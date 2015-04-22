@@ -154,5 +154,25 @@ public class InfographicDaoImpl implements InfographicDao {
 
     }
 
+    @Override
+    public Infographic findInfographicForId(Integer id){
+        try {
+            CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+            CriteriaQuery<Infographic> cq = builder.createQuery(Infographic.class);
+
+            Root<Infographic> root = cq.from(Infographic.class);
+            cq.select(root);
+            cq.where(builder.equal(root.<Integer>get("id"), id));
+            Infographic infographic = entityManager.createQuery(cq).getSingleResult();
+            return infographic;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            entityManager.close();
+        }
+
+    }
+
 
 }

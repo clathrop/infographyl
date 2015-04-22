@@ -43,13 +43,28 @@ public class InfographicController {
             model.addAttribute("name", name);
             model.addAttribute("description", ig.getDescription());
             model.addAttribute("tags", ig.getTags());
-            //returns the view name
-
 
         } catch (Exception e){
             e.printStackTrace();
         }
         return "home";
+    }
+
+    @RequestMapping("/view/{igId}")
+    public String viewSingle(@PathVariable("igId") String igId, Model model){
+        try{
+            Infographic ig = infographicManager.findInfographicForId(Integer.parseInt(igId));
+
+            model.addAttribute("url", ig.getUrl());
+            model.addAttribute("category", ig.getCategory());
+            model.addAttribute("name", ig.getName());
+            model.addAttribute("description", ig.getDescription());
+            model.addAttribute("tags", ig.getTags());
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return "singleView";
     }
 
     @RequestMapping("/category/{categoryId}")

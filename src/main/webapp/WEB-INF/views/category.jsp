@@ -76,7 +76,7 @@
 			</tr><tr>
 		</c:if>
 		<div class="col-sm-3">
-			<a href="#" class="thumbnail">
+			<a href="/view/${igList[i.index].id}" class="thumbnail">
 					<!-- <div class="caption">
 						${igList[i.index].name}
 					</div> -->

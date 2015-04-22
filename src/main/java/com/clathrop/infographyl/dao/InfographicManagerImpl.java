@@ -82,4 +82,8 @@ public class InfographicManagerImpl implements InfographicManager{
         return infographicDao.findInfographicsForCategory(category);
     }
 
+    public Infographic findInfographicForId(Integer id){
+        return infographicDao.findInfographicForId(id);
+    }
+
 }
