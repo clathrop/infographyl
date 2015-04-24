@@ -20,7 +20,7 @@
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-static-top">
-    <div class="container">
+        <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="/">infographyl</a>
             </div>
@@ -56,7 +56,22 @@
             </div>
             <div>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/category/lifehack">lifehack</a></li>
+                    <li class="active"><a href="/category/design">design</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/category/science">science</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/category/entertainment">entertainment</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/category/work">work</a></li>
                 </ul>
             </div>
         </div>

@@ -22,23 +22,63 @@
   <script src="js/infographicJTable.js" type="text/javascript"></script>
 </head>
 <body>
-  <nav class="navbar navbar-inverse">
-    <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/">infographyl</a>
-      </div>
-      <div>
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="/">home</a></li>
-        </ul>
-      </div>
-      <div>
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="category/technology">technology</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">infographyl</a>
+            </div>
+            <!-- <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">home</a></li>
+                </ul>
+            </div> -->
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/category/technology">technology</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/category/food">food</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/category/health">health</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/category/travel">travel</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/category/history">history</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/category/design">design</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/category/science">science</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/category/entertainment">entertainment</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/category/work">work</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
   <div class="container">
     <h1>infographyl </h1>
