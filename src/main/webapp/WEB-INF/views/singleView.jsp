@@ -81,7 +81,7 @@
         <h1 class="title">infographyl</h1>
         <h2 class="subtitle">feed the mind</h2>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 img-responsive">
                 <img src=${url} class="img-rounded" alt=${name} width="750">
             </div>
             <div class="col-md-4">
