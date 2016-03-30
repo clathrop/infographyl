@@ -80,11 +80,5 @@ public class InfographicController {
         return "category";
     }
 
-//    @RequestMapping("/singleView1")
-//    public String singleview(){
-//
-//        return "singleView1";
-//    }
-
 
 }
